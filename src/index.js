@@ -1,12 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import './global/global.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import LoginPage from './pages/login/LoginPage';
+import CreateAccountPage from './pages/createAccount/CreateAccountPage';
+
+import "./global/global.css"
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Switch>
+      <Route path="/" exact={true} component={LoginPage}/>
+      <Route path="/create/account" component={CreateAccountPage}/>
+    </Switch>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 

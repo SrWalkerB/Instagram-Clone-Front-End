@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 import "./style.css"
 
 function LoginComponent(){
@@ -18,7 +18,9 @@ function LoginComponent(){
             </div>
                 <div className='container-option-create-account'>
                     <p>Don't have an account?</p>
-                    <a>Create Account</a>
+                    <Link to="/create/account">
+                        Create Account
+                    </Link>
                 </div>
 
         </div>

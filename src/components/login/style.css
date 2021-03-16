@@ -20,8 +20,8 @@
 
     padding: 50px;
     margin-top: 40px;
-    height: 40vh;
-    width: 25vw;
+    height: 45vh;
+    width: 30vw;
 }
 
 .container-login h1{
@@ -29,7 +29,6 @@
 }
 
 .container-input-login{
-
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -45,8 +44,8 @@
 
     margin-top: 15px;
     height: 2vh;
-    padding: 8px;
-    width: 20vw;
+    padding: 15px;
+    width: 22vw;
 }
 
 .container-input-login button{
@@ -73,17 +72,17 @@
     align-items: center;
     justify-content: center;
 
-    padding: 10px;
+    padding: 25px 50px;
     margin-top: 20px;
 
-    width: 31vw;
-    height: 5vh;
 }
 
 .container-option-create-account a{
-    color: #0095f6;
     font-weight: bold;
+    font-size: 18px;
+    color: #0095f6;
     cursor: pointer;
+    text-decoration: none;
 
     margin-left: 5px;
 }
