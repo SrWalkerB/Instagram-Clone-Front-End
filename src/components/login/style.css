@@ -1,0 +1,89 @@
+
+.container-body-login{
+    background-color: #e9e7e7;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: 100vh;
+}
+
+.container-login{
+    background-color: whitesmoke;
+    border: solid 1px rgb(156, 155, 155);
+    text-align: center;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 50px;
+    margin-top: 40px;
+    height: 40vh;
+    width: 25vw;
+}
+
+.container-login h1{
+    font-size: 40px;
+}
+
+.container-input-login{
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 35vw;
+    margin-top: 15px;
+
+}
+
+.container-input-login input{
+    border: solid 1px gray;
+
+    margin-top: 15px;
+    height: 2vh;
+    padding: 8px;
+    width: 20vw;
+}
+
+.container-input-login button{
+    background-color: #0095f6;
+    border: solid 1px #0095f6;
+    color: white;
+    font-weight: bold;
+    font-size: 17px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    margin-top: 15px;
+    padding: 10px;
+    width: 22vw;
+}
+
+
+.container-option-create-account{
+    background-color: whitesmoke;
+    border: solid 1px rgb(156, 155, 155);
+    text-align: center;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px;
+    margin-top: 20px;
+
+    width: 31vw;
+    height: 5vh;
+}
+
+.container-option-create-account a{
+    color: #0095f6;
+    font-weight: bold;
+    cursor: pointer;
+
+    margin-left: 5px;
+}
