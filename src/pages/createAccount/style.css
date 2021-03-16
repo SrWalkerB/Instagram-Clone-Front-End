@@ -16,3 +16,8 @@
 .container-create-account h3{
     margin-top: 15px;
 }
+
+#msg-err{
+    color: red;
+    margin-top: 15px;
+}
