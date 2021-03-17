@@ -1,5 +1,6 @@
 import LoginComponent from "../../components/login/LoginComponent";
 
+console.clear();
 
 function LoginPage(){
     return (

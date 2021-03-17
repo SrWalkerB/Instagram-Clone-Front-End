@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Profile from "../../components/profile/Profile";
 import { AuthContext } from "../../providers/auth";
 import LoginPage from "../login/LoginPage";
@@ -7,7 +7,7 @@ console.clear();
 
 function ProfilePage(){
 
-    const { autorization } = React.useContext(AuthContext);
+    const { autorization, setAutorization } = React.useContext(AuthContext);
 
     console.log(autorization);
 

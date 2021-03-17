@@ -14,10 +14,10 @@ ReactDOM.render(
     <Switch>
 
       <Redirect from="/" exact={true} to="/login"/>
-      <Route path="/login" exact={true} component={LoginPage}/>
       <Route path="/create/account" component={CreateAccountPage}/>
 
       <AuthProvider>
+        <Route path="/login" exact={true} component={LoginPage}/>
         <Route path="/profile" component={ProfilePage}/>
       </AuthProvider>
   
