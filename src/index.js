@@ -6,16 +6,21 @@ import LoginPage from './pages/login/LoginPage';
 import CreateAccountPage from './pages/createAccount/CreateAccountPage';
 import "./global/global.css"
 import ProfilePage from "./pages/profile/profilePage";
+import { AuthContext, AuthProvider } from "./providers/auth";
 dotenv.config();
-
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
+
       <Redirect from="/" exact={true} to="/login"/>
       <Route path="/login" exact={true} component={LoginPage}/>
       <Route path="/create/account" component={CreateAccountPage}/>
-      <Route path="/profile" component={ProfilePage}/>
+
+      <AuthProvider>
+        <Route path="/profile" component={ProfilePage}/>
+      </AuthProvider>
+  
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')

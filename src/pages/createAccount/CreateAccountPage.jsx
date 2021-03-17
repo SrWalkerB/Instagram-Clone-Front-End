@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, Redirect, Route } from "react-router-dom";
 
 import "./style.css"
@@ -7,8 +7,9 @@ import "./style.css"
 console.clear();
 function CreateAccountPage(){
 
-    const [resultERR, SetResultERR] = useState("");
-    const [redirect, SetRedirect] = useState(false);
+    const [resultCreateAccount, SetResultAccount] = useState("");
+    const [redirect, setRedirect] = useState(false);
+
 
     async function GetInputData(){
 
@@ -16,9 +17,6 @@ function CreateAccountPage(){
         const username = document.querySelector("#input-username").value;
         const email = document.querySelector("#input-email").value;
         const password = document.querySelector("#input-password").value;
-
-        SetRedirect(true);
-
 
         if(full_name || username || email || password !== ""){
 
@@ -37,10 +35,14 @@ function CreateAccountPage(){
             })
 
             if(userCreate.err){
-                return SetResultERR(userCreate.err);
+                return SetResultAccount(<p id="msg-err">{userCreate.err}</p>);
             }
 
-            SetResultERR("");
+            SetResultAccount(<p id="msg-ok">Account Create!</p>);
+
+            setInterval(() => {
+                setRedirect(true);
+            }, 2000)
         }
 
     }
@@ -57,11 +59,14 @@ function CreateAccountPage(){
                     <input id="input-username" placeholder="Username" />
                     <input id="input-email" type="email" placeholder="Email" />
                     <input id="input-password" type="password" placeholder="Password"/>
+
                     <button onClick={() => GetInputData()}>Create Account</button>
-                    {redirect == true ? <Redirect to="/profile"/> : ""}
+
+                    {redirect == true ? <Redirect to="/login"/> : ""}
                 </div>
 
-                <p id="msg-err">{resultERR}</p>
+                {resultCreateAccount}
+
             </div>
                 <div className="container-option-create-account">
                     <p>Have an account?</p>

@@ -1,14 +1,19 @@
-import { useState } from "react";
-import Not_Autenticanting from "../../components/not_Autenticating/Not_Autenticanting";
+import React, { useContext, useState } from "react";
 import Profile from "../../components/profile/Profile";
+import { AuthContext } from "../../providers/auth";
+import LoginPage from "../login/LoginPage";
+
+console.clear();
 
 function ProfilePage(){
 
-    const [showProfile, setShowProfile] = useState(false);
+    const { autorization } = React.useContext(AuthContext);
+
+    console.log(autorization);
 
     return(
         <div>
-            {showProfile ? <Profile /> : <Not_Autenticanting />}
+            {autorization ? <Profile /> : <LoginPage />}
         </div>
     )
 }
