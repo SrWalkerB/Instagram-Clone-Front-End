@@ -4,7 +4,6 @@ import { AuthContext } from "../../providers/auth";
 import LoginPage from "../login/LoginPage";
 
 console.clear();
-
 function ProfilePage(){
 
     const { autorization, setAutorization } = React.useContext(AuthContext);
