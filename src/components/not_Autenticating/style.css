@@ -1,0 +1,23 @@
+
+.container-not-autenticanting{
+    background-color: whitesmoke;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    height: 100vh;
+}
+
+.container-not-autenticanting button{
+    cursor: pointer;
+
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.container-not-autenticanting a{
+    text-decoration: none;
+    color: black;
+}

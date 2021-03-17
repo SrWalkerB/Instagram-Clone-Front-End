@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect, Route } from "react-router-dom";
 
 import "./style.css"
 
@@ -8,6 +8,7 @@ console.clear();
 function CreateAccountPage(){
 
     const [resultERR, SetResultERR] = useState("");
+    const [redirect, SetRedirect] = useState(false);
 
     async function GetInputData(){
 
@@ -15,6 +16,9 @@ function CreateAccountPage(){
         const username = document.querySelector("#input-username").value;
         const email = document.querySelector("#input-email").value;
         const password = document.querySelector("#input-password").value;
+
+        SetRedirect(true);
+
 
         if(full_name || username || email || password !== ""){
 
@@ -32,15 +36,13 @@ function CreateAccountPage(){
                 return resp.data;
             })
 
-            
             if(userCreate.err){
                 return SetResultERR(userCreate.err);
             }
 
-            
-
             SetResultERR("");
         }
+
     }
 
     return (
@@ -56,6 +58,7 @@ function CreateAccountPage(){
                     <input id="input-email" type="email" placeholder="Email" />
                     <input id="input-password" type="password" placeholder="Password"/>
                     <button onClick={() => GetInputData()}>Create Account</button>
+                    {redirect == true ? <Redirect to="/profile"/> : ""}
                 </div>
 
                 <p id="msg-err">{resultERR}</p>
