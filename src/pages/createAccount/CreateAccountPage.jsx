@@ -4,7 +4,6 @@ import { Link, Redirect, Route } from "react-router-dom";
 
 import "./style.css"
 
-console.clear();
 function CreateAccountPage(){
 
     const [resultCreateAccount, SetResultAccount] = useState("");

@@ -1,11 +1,13 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { AuthContext } from "../../providers/auth";
 
 console.clear();
-
 function Profile(){
     
+    const { autorization, setAutorization } = React.useContext(AuthContext);
+    const [userData, setUserData] = useState([""]);
+
     useEffect(async () => {
 
         const token = localStorage.getItem("token");
@@ -19,14 +21,18 @@ function Profile(){
         }).then(resp => {
             return resp.data;
         })
-
-        console.log(dataUser); 
+       
+        if(dataUser.id){
+            setAutorization(true);
+        }
+        
+        setUserData(dataUser);
 
     }, [])
 
     return(
         <div>
-            <h1>Hello </h1>
+            <h1>Welcome {userData.name_full}</h1>
 
         </div>
     )

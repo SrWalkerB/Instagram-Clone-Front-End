@@ -4,8 +4,6 @@ import { Link, Redirect } from "react-router-dom";
 import { AuthContext } from "../../providers/auth";
 import "./style.css"
 
-console.clear();
-
 function LoginComponent(){
 
     const [check, setCheck] = useState(false);
@@ -58,7 +56,7 @@ function LoginComponent(){
                     <button onClick={() => UserLogin()}>Log in</button>
 
                     <h2 id="msg-err">{msgErr}</h2>
-                    {check ? <Redirect to="/profile"/> : ""};
+                    {check ? <Redirect to="/profile"/> : ""}
                 </div>
 
 
