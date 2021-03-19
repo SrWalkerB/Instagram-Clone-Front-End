@@ -42,7 +42,7 @@ function Profile(){
                 </div>
 
                 <div className="profile-itens">
-                    <p>Welcome {userData.name_full}</p>
+                    <p>{userData.name_full}</p>
 
                     <div className="container-profile-seguidores-pub-seguindo">
                         <p>0 Publicações</p>
