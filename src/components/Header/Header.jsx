@@ -6,16 +6,16 @@ console.clear();
 
 function Header(){
 
-    const [seacherUser, setSeacherUser] = useState(["0"]);
+    const [seacherUser, setSeacherUser] = useState([]);
     const [activeSearchBar, setActiveSeacherBar] = useState(false);
 
     useEffect( async() => {
 
         await SeacherUser_API();
         ExitButton();
+
     }, [seacherUser])
 
-    console.log(activeSearchBar);
 
     async function SeacherUser_API(name){
 
@@ -37,18 +37,25 @@ function Header(){
 
         }
 
-        console.log(seacherUser);
+        if(seacherUser.length > 0 && seacherUser != undefined){
 
-        SearchBar();
-    }
+            return setActiveSeacherBar(true);
 
-    function SearchBar(){
-        
-        if(seacherUser.length == 0){
+        } else{
+
             return setActiveSeacherBar(false);
         }
 
-        return setActiveSeacherBar(true);
+
+    }
+
+    function SearchBar(){
+
+        return(
+            <div className="search-users-suggestion">
+                <h1>Hello</h1>
+            </div>
+        )
     }
 
     function ExitButton(){
@@ -65,8 +72,11 @@ function Header(){
         <div className="container-header">
             <h1>Instagram</h1>
 
-            <input id="seacher-user" onChange={(e) => SeacherUser_API(e.target.value)} />
-            
+            <div>
+                <input id="seacher-user" onChange={(e) => SeacherUser_API(e.target.value)} />
+                {activeSearchBar ? <SearchBar /> : ""}
+            </div>
+
             <button onClick={ExitButton} id="button-exit">Exit</button>
         </div>
     )
