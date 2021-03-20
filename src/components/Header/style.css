@@ -18,3 +18,21 @@
 #seacher-user{
     padding: 5px;
 }
+
+.search-users-suggestion{
+    background-color: grey;
+
+    position: absolute;
+}
+
+.search-users-suggestion li{
+    list-style: none;
+       
+    padding: 10px; 
+}
+
+.search-users-suggestion li:hover{
+    background-color: green;
+    cursor: pointer;
+}
+

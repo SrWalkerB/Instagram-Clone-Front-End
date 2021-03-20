@@ -51,9 +51,25 @@ function Header(){
 
     function SearchBar(){
 
+        let dataUser = [];
+        
+        for(let x = 0; x < 10; x++){
+
+            if(seacherUser[x] != undefined){
+                dataUser.push(seacherUser[x]);
+            }
+        }
+
         return(
             <div className="search-users-suggestion">
-                <h1>Hello</h1>
+                {dataUser.map((result, index) => {
+                    return (
+                        <div key={index}>
+                            <li onClick={() => console.log(result.id)}>{result.username}</li>
+                        </div>
+                    )
+                })}
+            
             </div>
         )
     }
