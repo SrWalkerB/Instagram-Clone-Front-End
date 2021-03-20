@@ -7,6 +7,9 @@ import CreateAccountPage from './pages/createAccount/CreateAccountPage';
 import "./global/global.css"
 import ProfilePage from "./pages/profile/profilePage";
 import { AuthContext, AuthProvider } from "./providers/auth";
+import ProfileConvidado from "./pages/profileConvidado/ProfileConvidado";
+import notFound from "./pages/notFound/notFound";
+
 dotenv.config();
 
 ReactDOM.render(
@@ -18,7 +21,10 @@ ReactDOM.render(
 
       <AuthProvider>
         <Route path="/login" exact={true} component={LoginPage}/>
-        <Route path="/profile" component={ProfilePage}/>
+        <Route path="/profile" exact={true}  component={ProfilePage}/>
+        <Route path="/profile/:username" exact={true} component={ProfileConvidado}/>
+
+        <Route path="/err" exact={true} component={notFound}/>
       </AuthProvider>
   
     </Switch>

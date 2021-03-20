@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link, Redirect } from "react-router-dom";
 import  "./style.css"
 
 console.clear();
@@ -8,6 +9,7 @@ function Header(){
 
     const [seacherUser, setSeacherUser] = useState([]);
     const [activeSearchBar, setActiveSeacherBar] = useState(false);
+    const [nameSeacher, setNameSeacher] = useState("");
 
     useEffect( async() => {
 
@@ -20,7 +22,7 @@ function Header(){
     async function SeacherUser_API(name){
 
         const token = localStorage.getItem("token");
-        
+
         if(name != undefined){
 
             const dataUser = await axios({
@@ -33,20 +35,15 @@ function Header(){
                  return resp.data;
             })
 
-            setSeacherUser(dataUser);
+           return setSeacherUser(dataUser);
 
         }
 
         if(seacherUser.length > 0 && seacherUser != undefined){
-
             return setActiveSeacherBar(true);
-
-        } else{
-
+        }else{
             return setActiveSeacherBar(false);
-        }
-
-
+        }  
     }
 
     function SearchBar(){
@@ -65,7 +62,11 @@ function Header(){
                 {dataUser.map((result, index) => {
                     return (
                         <div key={index}>
-                            <li onClick={() => console.log(result.id)}>{result.username}</li>
+                            <li onClick={() => setActiveSeacherBar(false)}>
+                                <Link to={`/profile/${result.username}`} >
+                                    {result.username}
+                                </Link>
+                            </li>
                         </div>
                     )
                 })}
@@ -92,8 +93,15 @@ function Header(){
                 <input id="seacher-user" onChange={(e) => SeacherUser_API(e.target.value)} />
                 {activeSearchBar ? <SearchBar /> : ""}
             </div>
-
-            <button onClick={ExitButton} id="button-exit">Exit</button>
+            
+            <div className="user-options-header">
+                <button>
+                    <Link to="/profile">
+                        My Profile
+                    </Link>
+                </button>
+                <button onClick={ExitButton} id="button-exit">Exit</button>
+            </div>
         </div>
     )
 }

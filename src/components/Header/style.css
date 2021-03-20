@@ -36,3 +36,16 @@
     cursor: pointer;
 }
 
+.search-users-suggestion li a{
+    text-decoration: none;
+    color: black;
+}
+
+.user-options-header button{
+    margin-left: 15px;
+}
+
+.user-options-header button a{
+    text-decoration: none;
+    color: black;
+}

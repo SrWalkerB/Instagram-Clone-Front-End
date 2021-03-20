@@ -1,0 +1,25 @@
+
+.container-not-found{
+    text-align: center;
+
+    padding: 50px;
+}
+
+.not-found-buttons{
+
+    padding: 15px;
+}
+
+.not-found-buttons button{
+    padding: 15px;
+    cursor: pointer;
+}
+
+.not-found-buttons a{
+    text-decoration: none;
+    background-color: teal;
+    color: black;
+
+    padding: 15px;
+}
+
