@@ -21,24 +21,25 @@
 
 .search-users-suggestion{
     background-color: grey;
-
     position: absolute;
 }
 
 .search-users-suggestion li{
     list-style: none;
-       
-    padding: 10px; 
-}
-
-.search-users-suggestion li:hover{
-    background-color: green;
-    cursor: pointer;
 }
 
 .search-users-suggestion li a{
     text-decoration: none;
+}
+
+.search-users-suggestion li p{
     color: black;
+    font-size: 21px;
+    padding: 5px;
+}
+
+.search-users-suggestion li p:hover{
+    background-color: tomato;
 }
 
 .user-options-header button{
@@ -47,5 +48,9 @@
 
 .user-options-header button a{
     text-decoration: none;
-    color: black;
+}
+
+.user-options-header button p{
+    background-color: aqua;
+    font-size: 15px;
 }

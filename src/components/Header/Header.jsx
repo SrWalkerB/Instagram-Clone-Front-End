@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import  "./style.css"
 
 console.clear();
@@ -9,6 +9,7 @@ function Header(){
 
     const [seacherUser, setSeacherUser] = useState([]);
     const [activeSearchBar, setActiveSeacherBar] = useState(false);
+    const [redirect, setRedirect] = useState(false);
 
     useEffect( async() => {
 
@@ -51,7 +52,7 @@ function Header(){
         for(let x = 0; x < 10; x++){
 
             if(seacherUser[x] != undefined){
-                dataUser.push(seacherUser[x]);
+                dataUser.push(seacherUser[x].username);
             }
         }
 
@@ -61,8 +62,8 @@ function Header(){
                     return (
                         <div key={index}>
                             <li onClick={() => setActiveSeacherBar(false)}>
-                                <Link to={`/profile/${result.username}`} >
-                                    {result.username}
+                                <Link to={`/profile/${result}`} >
+                                    <p>{result}</p>
                                 </Link>
                             </li>
                         </div>
@@ -91,7 +92,7 @@ function Header(){
             <div className="user-options-header">
                 <button>
                     {<Link to="/profile">
-                        My Profile
+                        <p>My Profile</p>
                     </Link>
                     }
                 </button>
