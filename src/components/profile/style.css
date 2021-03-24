@@ -14,8 +14,7 @@
 }
 
 .img-profile img{
-    border-radius: 50%;
-    width: 13vw;
+    border-radius: 20%;
 }
 
 .profile-itens{
@@ -45,4 +44,38 @@
 .profile-description p{
     font-size: 15px;
     padding: 5px;
+}
+
+.container-photos{
+    background-color: aqua;
+
+    display: flex;
+    justify-content: center;
+
+}
+
+.container-photos-elements{
+    background-color: beige;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    width: 70vw;
+}
+
+.container-photos-elements > div{
+    flex: 1 1 200px;
+}
+
+.elements-photos{
+    display: flex;
+    justify-content: center;
+
+}
+
+
+.elements-photos img{
+    width: 20vw;
+    
+    margin-top: 15px;
 }

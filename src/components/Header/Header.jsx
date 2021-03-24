@@ -9,7 +9,6 @@ function Header(){
 
     const [seacherUser, setSeacherUser] = useState([]);
     const [activeSearchBar, setActiveSeacherBar] = useState(false);
-    const [nameSeacher, setNameSeacher] = useState("");
 
     useEffect( async() => {
 
@@ -34,10 +33,10 @@ function Header(){
             }).then(resp => {
                  return resp.data;
             })
-
+            
            return setSeacherUser(dataUser);
-
         }
+
 
         if(seacherUser.length > 0 && seacherUser != undefined){
             return setActiveSeacherBar(true);
@@ -70,7 +69,6 @@ function Header(){
                         </div>
                     )
                 })}
-            
             </div>
         )
     }
@@ -96,9 +94,10 @@ function Header(){
             
             <div className="user-options-header">
                 <button>
-                    <Link to="/profile">
+                    {<Link to="/profile">
                         My Profile
                     </Link>
+                    }
                 </button>
                 <button onClick={ExitButton} id="button-exit">Exit</button>
             </div>

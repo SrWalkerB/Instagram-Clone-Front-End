@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Redirect, useParams } from "react-router";
 import Header from "../../components/Header/Header";
 
+import "./style.css"
 
 console.clear();
 
@@ -11,9 +12,9 @@ function ProfileConvidado(){
     const { username } = useParams();
     const [userNotFound, setUserNotFound] = useState(false);
     const [user, setUser] = useState(['']);
+    const [following, setFollowing] = useState(false);
 
     useEffect(async () => {
-
 
         await seacherUser();
 
@@ -35,12 +36,63 @@ function ProfileConvidado(){
             console.log(err);
         })        
 
+        await verifyFollow(data[0].id)
+        await follow(data[0].id); 
+
         if(data == 0){
             return setUserNotFound(true);
         }
 
         setUser(...data);
+    }
+    
+    async function verifyFollow(id){
 
+        const token = localStorage.getItem('token');
+
+        const result = await axios({
+            method: "GET",
+            baseURL: `${process.env.REACT_APP_API_LIST_FOLLOWING}/${id}`,
+            headers: {
+                token: token
+            }
+        }).then(resp => {
+            return resp.data;
+        })
+
+        console.log(result);
+
+        if(result.msg == false){
+            return setFollowing(false);
+        }
+
+        return setFollowing(true);
+    }
+
+    async function follow(id){
+
+        const button_Follow = document.querySelector(".container-profile-follow").querySelector('button');
+
+        button_Follow.onclick = async () => {
+
+            const token = localStorage.getItem('token');
+            const follow = await axios({
+                method: "POST",
+                baseURL: `${process.env.REACT_APP_API_FOLLOW_USER}/${id}`,
+                headers: {
+                    token: token
+                },
+                validateStatus: false
+            }).then(resp => {
+                return resp.data;
+            })
+
+            console.log(follow)
+
+            if(follow.msg == "Following"){
+                return setFollowing(true)
+            }
+        }
     }
 
     return(
@@ -51,11 +103,16 @@ function ProfileConvidado(){
 
             <div className="container-profile">
                 <div className="img-profile">
-                    <img src="https://instagram.fcok1-1.fna.fbcdn.net/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=instagram.fcok1-1.fna.fbcdn.net&_nc_ohc=EiFnMM8BpOgAX8I15oq&ccb=7-4&oh=2749ac8ab0adf5c93d21b67abb3f1284&oe=607B960F&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2-ccb7-4"></img>
+                    <img 
+                        src="https://w7.pngwing.com/pngs/613/636/png-transparent-computer-icons-user-profile-male-avatar-avatar-heroes-logo-black-thumbnail.png"
+                    />
                 </div>
 
                 <div className="profile-itens">
-                    <p>{user.name_full}</p>
+                    <div className="container-profile-follow">
+                        <p>{user.name_full}</p>
+                        {following ? <button id="button-follow-true">Following</button> : <button id="button-follow">Follow</button>}
+                    </div>
 
                     <div className="container-profile-seguidores-pub-seguindo">
                         <p>0 Publicações</p>
