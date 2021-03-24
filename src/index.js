@@ -23,7 +23,6 @@ ReactDOM.render(
         <Route path="/login" exact={true} component={LoginPage}/>
         <Route path="/profile" exact={true}  component={ProfilePage}/>
         <Route path="/profile/:username" exact={true} component={ProfileConvidado}/>
-
         <Route path="/err" exact={true} component={notFound}/>
       </AuthProvider>
   

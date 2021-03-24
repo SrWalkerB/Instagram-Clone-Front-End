@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import  "./style.css"
 
 console.clear();
@@ -13,7 +13,6 @@ function Header(){
     useEffect( async() => {
 
         await SeacherUser_API();
-        ExitButton();
 
     }, [seacherUser])
 
@@ -74,13 +73,10 @@ function Header(){
     }
 
     function ExitButton(){
-
-        const button_exit = document.querySelector("#button-exit");
-
-        button_exit.onclick = () => {
-            localStorage.clear();
-            document.location.reload(true); 
-        }
+    
+        localStorage.clear();
+        document.location.reload(true);    
+    
     }
     
     return(

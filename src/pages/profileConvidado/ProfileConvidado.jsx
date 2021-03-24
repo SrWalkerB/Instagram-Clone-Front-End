@@ -11,8 +11,10 @@ function ProfileConvidado(){
 
     const { username } = useParams();
     const [userNotFound, setUserNotFound] = useState(false);
+    const [followingButton, setFollowingButton] = useState(false);
     const [user, setUser] = useState(['']);
-    const [following, setFollowing] = useState(false);
+    const [userFollowing, setUserFollowing] = useState(['']);
+    const [userPhotos, setUserPhotos] = useState(['']);
 
     useEffect(async () => {
 
@@ -43,6 +45,10 @@ function ProfileConvidado(){
             return setUserNotFound(true);
         }
 
+        const [{ follow_user, photo_user }] = data;
+
+        setUserPhotos(photo_user)
+        setUserFollowing(follow_user);
         setUser(...data);
     }
     
@@ -63,10 +69,10 @@ function ProfileConvidado(){
         console.log(result);
 
         if(result.msg == false){
-            return setFollowing(false);
+            return setFollowingButton(false);
         }
 
-        return setFollowing(true);
+        return setFollowingButton(true);
     }
 
     async function follow(id){
@@ -87,10 +93,8 @@ function ProfileConvidado(){
                 return resp.data;
             })
 
-            console.log(follow)
-
             if(follow.msg == "Following"){
-                return setFollowing(true)
+                return setFollowingButton(true)
             }
         }
     }
@@ -105,19 +109,20 @@ function ProfileConvidado(){
                 <div className="img-profile">
                     <img 
                         src="https://w7.pngwing.com/pngs/613/636/png-transparent-computer-icons-user-profile-male-avatar-avatar-heroes-logo-black-thumbnail.png"
+                        width={"150px"}
                     />
                 </div>
 
                 <div className="profile-itens">
                     <div className="container-profile-follow">
                         <p>{user.name_full}</p>
-                        {following ? <button id="button-follow-true">Following</button> : <button id="button-follow">Follow</button>}
+                        {followingButton ? <button id="button-follow-true">Following</button> : <button id="button-follow">Follow</button>}
                     </div>
 
                     <div className="container-profile-seguidores-pub-seguindo">
                         <p>0 Publicações</p>
                         <p>0 Seguidores</p>
-                        <p>0 Seguindo</p>
+                        <p>{userFollowing.length} Seguindo</p>
                     </div>
 
                     <div className="profile-description">
@@ -125,6 +130,19 @@ function ProfileConvidado(){
                     </div>
                 </div>
             </div>
+
+            <div className="container-photos">
+                <div className="container-photos-elements">
+                    {userPhotos.map((result, index) => {
+                        return (
+                            <div className="elements-photos" key={index}>
+                                <img src={result.url}></img>
+                            </div>
+                        )
+                    })}
+                </div>
+            </div>
+
         </div>
     )
 }

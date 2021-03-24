@@ -47,35 +47,33 @@
 }
 
 .container-photos{
-    background-color: aqua;
-
     display: flex;
     justify-content: center;
 
 }
 
 .container-photos-elements{
-    background-color: beige;
-
     display: flex;
     flex-wrap: wrap;
 
     width: 70vw;
 }
 
-.container-photos-elements > div{
-    flex: 1 1 200px;
-}
 
 .elements-photos{
     display: flex;
     justify-content: center;
+    margin-left: 20px;
+    padding: 10px;
 
 }
 
-
 .elements-photos img{
     width: 20vw;
-    
     margin-top: 15px;
+}
+
+.elements-photos img:hover{
+    cursor: pointer;
+    filter: brightness(70%);
 }
