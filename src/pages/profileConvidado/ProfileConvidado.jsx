@@ -1,14 +1,16 @@
+import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Redirect, useParams } from "react-router";
 import Header from "../../components/Header/Header";
+import { AuthContext } from "../../providers/auth";
 
 import "./style.css"
 
 console.clear();
-
 function ProfileConvidado(){
 
+    const { autorization, setAutorization } = React.useContext(AuthContext);
     const { username } = useParams();
     const [userNotFound, setUserNotFound] = useState(false);
     const [followingButton, setFollowingButton] = useState(false);
@@ -18,8 +20,8 @@ function ProfileConvidado(){
     const [userPhotos, setUserPhotos] = useState(['']);
 
     useEffect(async () => {
-
-        await seacherUser();
+        
+        await seacherUser()
 
     }, [username]);
 
@@ -27,6 +29,7 @@ function ProfileConvidado(){
     async function seacherUser() {
 
         const token = localStorage.getItem("token");
+        
         const data = await axios({
             baseURL: `${process.env.REACT_APP_API_PROFILE}/${username}`,
             method: "GET",
@@ -39,12 +42,12 @@ function ProfileConvidado(){
             console.log(err);
         })        
 
+        if(data == undefined){
+            return setUserNotFound(true);
+        }
         await verifyFollow(data[0].id)
         await follow(data[0].id); 
 
-        if(data == 0){
-            return setUserNotFound(true);
-        }
 
         const [{ following_user, photo_user, followers }] = data;
 
@@ -52,6 +55,7 @@ function ProfileConvidado(){
         setUserPhotos(photo_user)
         setUserFollowing(following_user);
         setUser(...data);
+
     }
     
     async function verifyFollow(id){
@@ -67,8 +71,6 @@ function ProfileConvidado(){
         }).then(resp => {
             return resp.data;
         })
-
-        console.log(result);
 
         if(result.msg == false){
             return setFollowingButton(false);
@@ -103,10 +105,9 @@ function ProfileConvidado(){
 
     return(
         <div>
-            <Header />
-
             {userNotFound ? <Redirect to="/err"/> : ""}
-
+            
+            <Header />
             <div className="container-profile">
                 <div className="img-profile">
                     <img 
