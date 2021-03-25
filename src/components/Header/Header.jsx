@@ -83,11 +83,14 @@ function Header(){
     return(
         <div className="container-header">
             <Link to="/feed">
-                <h1>Instagram</h1>
+                <div className="header-logo">
+                    <img src={"https://image.flaticon.com/icons/png/512/87/87390.png"}></img>
+                    <h1>Instagram</h1>
+                </div>
             </Link> 
 
             <div>
-                <input id="seacher-user" onChange={(e) => SeacherUser_API(e.target.value)} />
+                <input id="seacher-user" placeholder="Searcher" onChange={(e) => SeacherUser_API(e.target.value)} />
                 {activeSearchBar ? <SearchBar /> : ""}
             </div>
             

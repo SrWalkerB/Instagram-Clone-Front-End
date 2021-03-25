@@ -31,9 +31,9 @@ function Feed(){
             <Header />
 
             <div className="container-feed">
-                {userFeed.map(result => {
+                {userFeed.map((result, index) => {
                     return (
-                        <div key={result.id_photo} className="elements-feed">
+                        <div key={index} className="elements-feed">
                             <div className="container-profile-feed">
                                 <div className="feed-profile">
                                     <img src={"https://www.drshaneholmes.com/wp-content/uploads/2020/03/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"}/>
