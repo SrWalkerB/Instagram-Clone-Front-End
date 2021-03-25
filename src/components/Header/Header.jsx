@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, withRouter } from "react-router-dom";
 import  "./style.css"
 
 console.clear();
@@ -76,8 +76,7 @@ function Header(){
     function ExitButton(){
     
         localStorage.clear();
-        document.location.reload(true);    
-    
+        setRedirect(true);
     }
     
     return(
@@ -102,6 +101,7 @@ function Header(){
                     }
                 </button>
                 <button onClick={ExitButton} id="button-exit">Exit</button>
+                {redirect ? <Redirect to="/login"/> : ""}
             </div>
         </div>
     )
