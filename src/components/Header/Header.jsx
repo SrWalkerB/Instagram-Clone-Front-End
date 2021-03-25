@@ -82,7 +82,9 @@ function Header(){
     
     return(
         <div className="container-header">
-            <h1>Instagram</h1>
+            <Link to="/feed">
+                <h1>Instagram</h1>
+            </Link> 
 
             <div>
                 <input id="seacher-user" onChange={(e) => SeacherUser_API(e.target.value)} />

@@ -9,6 +9,7 @@ import ProfilePage from "./pages/profile/profilePage";
 import { AuthContext, AuthProvider } from "./providers/auth";
 import ProfileConvidado from "./pages/profileConvidado/ProfileConvidado";
 import notFound from "./pages/notFound/notFound";
+import Feed from "./pages/feed/Feed";
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ ReactDOM.render(
         <Route path="/login" exact={true} component={LoginPage}/>
         <Route path="/profile" exact={true}  component={ProfilePage}/>
         <Route path="/profile/:username" exact={true} component={ProfileConvidado}/>
+        <Route path="/feed" exact={true} component={Feed}/>
         <Route path="/err" exact={true} component={notFound}/>
       </AuthProvider>
   

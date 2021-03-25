@@ -1,0 +1,58 @@
+
+.container-feed{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 15px;
+}
+
+.elements-feed{
+    border: solid 1px rgb(194, 193, 193);
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    width: 45vw;
+    margin-top: 15px;
+    padding: 5px;
+}
+
+.elements-feed:hover{
+    background-color: rgb(187, 184, 184);
+    transition: 0.50s;
+}
+
+.container-profile-feed{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 40vw;
+}
+
+.feed-profile{
+    display: flex;
+    align-items: center;
+}
+
+.feed-profile img{
+    width: 4vw;
+    border-radius: 50%;
+    margin-left: 15px;
+}
+
+.feed-profile h2{
+    margin-left: 15px;
+}
+
+.element-profile-feed{
+    padding: 15px;
+}
+
+.element-profile-feed img{
+    width: 40vw;
+}
