@@ -14,6 +14,7 @@ function ProfileConvidado(){
     const [followingButton, setFollowingButton] = useState(false);
     const [user, setUser] = useState(['']);
     const [userFollowing, setUserFollowing] = useState(['']);
+    const [userFollowers, setUserFollowers] = useState(['']);
     const [userPhotos, setUserPhotos] = useState(['']);
 
     useEffect(async () => {
@@ -45,10 +46,11 @@ function ProfileConvidado(){
             return setUserNotFound(true);
         }
 
-        const [{ follow_user, photo_user }] = data;
+        const [{ following_user, photo_user, followers }] = data;
 
+        setUserFollowers(followers)
         setUserPhotos(photo_user)
-        setUserFollowing(follow_user);
+        setUserFollowing(following_user);
         setUser(...data);
     }
     
@@ -120,8 +122,8 @@ function ProfileConvidado(){
                     </div>
 
                     <div className="container-profile-seguidores-pub-seguindo">
-                        <p>0 Publicações</p>
-                        <p>0 Seguidores</p>
+                        <p>{userPhotos.length} Publicações</p>
+                        <p>{userFollowers.length} Seguidores</p>
                         <p>{userFollowing.length} Seguindo</p>
                     </div>
 

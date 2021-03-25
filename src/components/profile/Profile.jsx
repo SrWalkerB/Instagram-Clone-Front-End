@@ -10,8 +10,10 @@ function Profile(){
     
     const { setAutorization } = React.useContext(AuthContext);
     const [following, setFollowing] = useState(['0']);
+    const [follow, setFollow] = useState(['0']);
     const [userData, setUserData] = useState([""]);
     const [userPhoto, setUserPhoto] = useState(['']);
+    const [file, setFile] = useState();
 
     useEffect(async () => {
 
@@ -36,12 +38,41 @@ function Profile(){
         if(dataUser.id){
             setAutorization(true);
         }
-        
-        console.log(dataUser.photo_users);
 
+
+        setFollow(dataUser.follow);
         setUserPhoto(dataUser.photo_users);
         setFollowing(dataUser.following)
         setUserData(dataUser)
+    }
+
+    async function Upload_image(){
+
+        const token = localStorage.getItem("token");
+        const input_upload = document.querySelector("#input-upload");
+
+        if(input_upload != ""){
+
+            const data = new FormData();
+            data.append('file', file.file)    
+            
+            await axios({
+                method: "POST",
+                baseURL: process.env.REACT_APP_API_UPLOAD,
+                data: data,
+                contentType: 'multipart/form-data',
+                headers: {
+                    token: token
+                },
+                validateStatus: false
+            }).then(resp => {
+                return resp.data
+            })
+
+            document.location.reload(true);
+        }
+        
+        
     }
 
     return(
@@ -59,15 +90,21 @@ function Profile(){
                     <p>{userData.name_full}</p>
 
                     <div className="container-profile-seguidores-pub-seguindo">
-                        <p>0 Publicações</p>
-                        <p>0 Seguidores</p>
+                        <p>{userPhoto.length} Publicações</p>
+                        <p>{follow.length} Seguidores</p>
                         <p>{following.length} Seguindo</p>
                     </div>
 
                     <div className="profile-description">
                         <p>Description user</p>
                     </div>
+
                 </div>
+                
+                <div className="container-upload">
+                    <input onChange={(e) => setFile({file: e.target.files[0]})} id="input-upload" type="file" accept="image/png, image/jpeg" name="upload-image"/>
+                </div>
+                    <button onClick={Upload_image} id="button_upload">Send</button>
 
             </div>
             <div className="container-photos">
