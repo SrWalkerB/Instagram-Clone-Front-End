@@ -27,9 +27,6 @@
     margin-left: 15px;
 }
 
-.container-header a:hover{
-    background-color: gray;
-}
 
 .container-header button{
     padding: 10px;
@@ -78,6 +75,6 @@
 }
 
 .user-options-header img:hover{
-    background-color: gray;
+
     cursor: pointer;
 }
