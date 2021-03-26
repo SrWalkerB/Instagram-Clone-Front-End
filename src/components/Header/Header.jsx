@@ -94,13 +94,12 @@ function Header(){
             </div>
             
             <div className="user-options-header">
-                <button>
                     {<Link to="/profile">
-                        <p>My Profile</p>
+                        <img src={"https://cdn3.iconfinder.com/data/icons/linies-small/64/house-512.png"}/>
                     </Link>
                     }
-                </button>
-                <button onClick={ExitButton} id="button-exit">Exit</button>
+                
+                <img src="https://pics.freeicons.io/uploads/icons/png/18610531421560147113-512.png" onClick={ExitButton} />
                 {redirect ? <Redirect to="/login"/> : ""}
             </div>
         </div>

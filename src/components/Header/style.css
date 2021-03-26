@@ -20,7 +20,7 @@
 }
 
 .header-logo img{
-    width: 4vw;
+    width: 3vw;
 }
 
 .header-logo h1{
@@ -64,15 +64,20 @@
     background-color: tomato;
 }
 
-.user-options-header button{
-    margin-left: 15px;
+.user-options-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    margin-right: 25px;
+    width: 10vw;
 }
 
-.user-options-header button a{
-    text-decoration: none;
+.user-options-header img{
+    width: 2.5vw;
 }
 
-.user-options-header button p{
-    background-color: aqua;
-    font-size: 15px;
+.user-options-header img:hover{
+    background-color: gray;
+    cursor: pointer;
 }
