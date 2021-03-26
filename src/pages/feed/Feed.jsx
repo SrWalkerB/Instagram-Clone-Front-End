@@ -12,7 +12,7 @@ function Feed(){
 
     const [ userFeed, setUserFeed ] = useState(['']);
     const [ feedLength, setfeedLength ] = useState(0);
-    const [ loading, setLoading] = useState(true);
+    const [likeButtom, setLikeButtom] = useState(false);
 
     useEffect(async () => {
 
@@ -30,6 +30,21 @@ function Feed(){
         setfeedLength(data.length)
 
     }, [])
+
+    function LikeButon(){
+
+        return (
+            <img onClick={() => setLikeButtom(true)} id="like_button" src="https://icons-for-free.com/iconfiles/png/512/heart-131965017458786724.png"></img>
+        )
+    }
+
+    function RemoveLike(){
+
+        return (
+            <img onClick={() => setLikeButtom(false)} src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/OOjs_UI_icon_heart.svg/768px-OOjs_UI_icon_heart.svg.png"></img>
+        )
+    }
+    
 
     function ContainerFeed() {
         return (
@@ -55,7 +70,8 @@ function Feed(){
                             </Link>
 
                             <div className='container-like-elements'>
-                                <img src="https://icons-for-free.com/iconfiles/png/512/heart-131965017458786724.png"></img>
+
+                                {likeButtom ? <RemoveLike /> :  <LikeButon />}
                                 <p>Curtida por {result.photo_like.length} pessoas</p>
                             </div>  
                         </div>
