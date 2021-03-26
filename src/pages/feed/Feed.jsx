@@ -53,6 +53,11 @@ function Feed(){
                                     <img src={result.url}></img>
                                 </div>
                             </Link>
+
+                            <div className='container-like-elements'>
+                                <img src="https://icons-for-free.com/iconfiles/png/512/heart-131965017458786724.png"></img>
+                                <p>Curtida por {result.photo_like.length} pessoas</p>
+                            </div>  
                         </div>
                     )
                 })}                
