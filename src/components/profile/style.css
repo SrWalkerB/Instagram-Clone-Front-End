@@ -10,7 +10,6 @@
     padding: 30px;
 }
 
-
 .img-profile-elements {
     padding: 15px;
 }
@@ -113,4 +112,11 @@
     color: white;
     border: solid 1px black;
 
+}
+
+@media(max-width: 1366px){
+
+    .img-profile-elements img{
+        max-width: 12vw;
+    }
 }
