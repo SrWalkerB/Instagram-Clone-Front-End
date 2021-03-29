@@ -12,6 +12,7 @@
 
 .img-profile-elements {
     padding: 15px;
+
 }
 
 .img-profile-elements input{
@@ -22,7 +23,7 @@
     border-radius: 50%;
     cursor: pointer;
 
-    width: 15vw;
+    width: 12vw;
     height: 22vh;
 }
 
@@ -114,9 +115,3 @@
 
 }
 
-@media(max-width: 1366px){
-
-    .img-profile-elements img{
-        max-width: 12vw;
-    }
-}

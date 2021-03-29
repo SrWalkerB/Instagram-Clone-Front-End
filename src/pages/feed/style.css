@@ -46,7 +46,7 @@
 
 .feed-profile img{
     width: 5vw;
-    height: 8vh;
+    height: 9vh;
     border-radius: 50%;
     margin-left: 15px;
 }
@@ -84,5 +84,6 @@
 
 .container-like-elements button{
     cursor: pointer;
-    padding: 5px;
+    padding: 9px;
 }
+

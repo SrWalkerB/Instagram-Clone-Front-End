@@ -35,7 +35,7 @@ function Feed(){
 
         const del = document.querySelector(`#element-${id}`).querySelector('button');
 
-        if(del.textContent == 'Like'){
+        if(del.textContent == 'Curtir'){
             
             const like = await Like_and_Remove_Photo_API(id_photo);
             
@@ -50,7 +50,7 @@ function Feed(){
 
             if(like.err == "Removed Like"){
 
-                return del.textContent = "Like"
+                return del.textContent = "Curtir"
             }
         }
     }
@@ -64,11 +64,11 @@ function Feed(){
             
             if(remove.err == "Removed Like"){
 
-                return del.textContent = "Like";
+                return del.textContent = "Curtir";
             }
         }
 
-        if(del.textContent == "Like"){
+        if(del.textContent == "Curtir"){
             const like = await Like_and_Remove_Photo_API(id_photo);
 
             if(like.msg == "like"){
@@ -100,16 +100,16 @@ function Feed(){
 
         const numberLikes = likes.likes -1;
 
-        if(numberLikes > 0){
-
+        if(numberLikes > 1){
             return (
-                <p>Voce e outra pessoa curtiram</p>
+                <p>Voce e outras {numberLikes} pessoas curtiram</p>
             )
         }
 
-        if(numberLikes > 1){
+        if(numberLikes > 2){
+
             return (
-                <p>Voce e outras {numberLikes} curtiram</p>
+                <p>Voce e outra pessoa curtiram</p>
             )
         }
 
@@ -164,7 +164,7 @@ function Feed(){
 
                             <div className='container-like-elements' id={`element-${index}`}>
 
-                                { result.like ? <button onClick={() => RemoveLike(index, result.id_photo)}>Curtida</button> : <button onClick={() => LikeButton(index, result.id_photo)}>Like</button> }
+                                { result.like ? <button onClick={() => RemoveLike(index, result.id_photo)}>Curtida</button> : <button onClick={() => LikeButton(index, result.id_photo)}>Curtir</button> }
 
                                 { result.like ? <Verify_Likes_for_text likes={result.photo_like.length} /> : <Verify_Other_Likes likes={result.photo_like.length} />}
                             </div>  
