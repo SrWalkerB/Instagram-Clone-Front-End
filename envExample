@@ -16,3 +16,5 @@ REACT_APP_API_UPLOAD=http://youHost:4530/profile/upload
 REACT_APP_API_FEED=http://youHost:4530/feed
 
 REACT_APP_API_UNFOLLOW=http://youHost:4530/profile/unfollow
+
+REACT_APP_API_LIKE=http://youHost:4530/feed/like/photo

@@ -12,7 +12,6 @@ function Feed(){
 
     const [ userFeed, setUserFeed ] = useState(['']);
     const [ feedLength, setfeedLength ] = useState(0);
-    const [ statusLike, setStatusLike ] = useState(['']);
 
     useEffect(async () => {
 
@@ -29,7 +28,7 @@ function Feed(){
         setUserFeed(data);
         setfeedLength(data.length)
 
-    }, [statusLike])
+    }, [])
 
 
     async function LikeButton(id, id_photo){
@@ -38,17 +37,22 @@ function Feed(){
 
         if(del.textContent == 'Like'){
             
-            const like = await Like_and_Remove_Photo(id_photo);
-
-            if(like.msg == "like"){
-
-                del.textContent = "Voce Curtiu"
-            }
+            const like = await Like_and_Remove_Photo_API(id_photo);
             
-        } else{
-            del.textContent = "Like"
+            if(like.msg == "like"){
+                
+                return del.textContent = "Voce Curtiu"
+            }
+        } 
+
+        if(del.textContent == "Voce Curtiu"){
+            const like = await Like_and_Remove_Photo_API(id_photo);
+
+            if(like.err == "Removed Like"){
+
+                return del.textContent = "Like"
+            }
         }
-        
     }
 
     async function RemoveLike(id, id_photo){
@@ -56,16 +60,24 @@ function Feed(){
         const del = document.querySelector(`#element-${id}`).querySelector('button');
 
         if(del.textContent == "Voce curtiu"){
+            const remove = await Like_and_Remove_Photo_API(id_photo);
+            
+            if(remove.err == "Removed Like"){
 
-            const remove = await Like_and_Remove_Photo(id_photo);
-            
-            console.log(remove);
-            
-            del.textContent = "Like"
+                return del.textContent = "Like";
+            }
+        }
+
+        if(del.textContent == "Like"){
+            const like = await Like_and_Remove_Photo_API(id_photo);
+
+            if(like.msg == "like"){
+                return del.textContent = "Voce curtiu";
+            }
         }
     }
 
-    async function Like_and_Remove_Photo(id_photo){
+    async function Like_and_Remove_Photo_API(id_photo){
 
         const token = localStorage.getItem("token");
         const result = await axios({
@@ -81,6 +93,13 @@ function Feed(){
         return result;
     }
 
+    function Verify_Likes_for_text(likes){
+
+        // { result.like ? <p id="text-likes">Voce e outras {result.photo_like.length-1} pessoas curtiram</p> : <p id="text-likes">Curtida por {result.photo_like.length} pessoas</p>}
+        //{ result.like ? <p id="text-likes">Voce e outras {result.photo_like.length-1} pessoas curtiram</p> : <p id="text-likes">Curtida por {result.photo_like.length} pessoas</p>}
+
+
+    }
 
     function ContainerFeed() {
         return (
@@ -108,8 +127,9 @@ function Feed(){
                             <div className='container-like-elements' id={`element-${index}`}>
 
                                 { result.like ? <button onClick={() => RemoveLike(index, result.id_photo)}>Voce curtiu</button> : <button onClick={() => LikeButton(index, result.id_photo)}>Like</button> }
-                               
-                                <p>Curtida por {result.photo_like.length} pessoas</p>
+
+                                { result.like ? <p id="text-likes">Voce e outras {result.photo_like.length-1} pessoas curtiram</p> : <p id="text-likes">Curtida por {result.photo_like.length} pessoas</p>}
+                                
                             </div>  
                         </div>
                     )
