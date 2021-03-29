@@ -59,7 +59,7 @@ function Feed(){
 
         const del = document.querySelector(`#element-${id}`).querySelector('button');
 
-        if(del.textContent == "Voce curtiu"){
+        if(del.textContent == "Curtida"){
             const remove = await Like_and_Remove_Photo_API(id_photo);
             
             if(remove.err == "Removed Like"){
@@ -72,7 +72,7 @@ function Feed(){
             const like = await Like_and_Remove_Photo_API(id_photo);
 
             if(like.msg == "like"){
-                return del.textContent = "Voce curtiu";
+                return del.textContent = "Curtida";
             }
         }
     }
@@ -96,9 +96,47 @@ function Feed(){
     function Verify_Likes_for_text(likes){
 
         // { result.like ? <p id="text-likes">Voce e outras {result.photo_like.length-1} pessoas curtiram</p> : <p id="text-likes">Curtida por {result.photo_like.length} pessoas</p>}
-        //{ result.like ? <p id="text-likes">Voce e outras {result.photo_like.length-1} pessoas curtiram</p> : <p id="text-likes">Curtida por {result.photo_like.length} pessoas</p>}
+        // { result.like ? <p id="text-likes">Voce e outras {result.photo_like.length-1} pessoas curtiram</p> : <p id="text-likes">Curtida por {result.photo_like.length} pessoas</p>}
 
+        const numberLikes = likes.likes -1;
 
+        if(numberLikes > 0){
+
+            return (
+                <p>Voce e outra pessoa curtiram</p>
+            )
+        }
+
+        if(numberLikes > 1){
+            return (
+                <p>Voce e outras {numberLikes} curtiram</p>
+            )
+        }
+
+        return(
+            <p>Voce Curtiu</p>
+        )
+    }
+
+    function Verify_Other_Likes(likes){
+
+        const numberLikes = likes.likes;
+
+        if(numberLikes >= 2){
+            return (
+                <p>{numberLikes} pessoas curtiram</p>
+            )
+        }
+
+        if(numberLikes > 0){
+            return (
+                <p>{numberLikes} pessoa curtiu</p>
+            )
+        }
+
+        return (
+            <p></p>
+        )
     }
 
     function ContainerFeed() {
@@ -126,10 +164,9 @@ function Feed(){
 
                             <div className='container-like-elements' id={`element-${index}`}>
 
-                                { result.like ? <button onClick={() => RemoveLike(index, result.id_photo)}>Voce curtiu</button> : <button onClick={() => LikeButton(index, result.id_photo)}>Like</button> }
+                                { result.like ? <button onClick={() => RemoveLike(index, result.id_photo)}>Curtida</button> : <button onClick={() => LikeButton(index, result.id_photo)}>Like</button> }
 
-                                { result.like ? <p id="text-likes">Voce e outras {result.photo_like.length-1} pessoas curtiram</p> : <p id="text-likes">Curtida por {result.photo_like.length} pessoas</p>}
-                                
+                                { result.like ? <Verify_Likes_for_text likes={result.photo_like.length} /> : <Verify_Other_Likes likes={result.photo_like.length} />}
                             </div>  
                         </div>
                     )
