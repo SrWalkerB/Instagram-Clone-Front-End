@@ -65,6 +65,8 @@
 
 .container-like-elements{
     width: 42vw;
+    display: flex;
+    align-items: center;
 }
 
 .container-like-elements img{
@@ -78,4 +80,9 @@
 
 .container-like-elements p{
     margin-left: 5px;
+}
+
+.container-like-elements button{
+    cursor: pointer;
+    padding: 5px;
 }

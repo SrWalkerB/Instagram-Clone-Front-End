@@ -12,7 +12,7 @@ function Feed(){
 
     const [ userFeed, setUserFeed ] = useState(['']);
     const [ feedLength, setfeedLength ] = useState(0);
-    const [likeButtom, setLikeButtom] = useState(false);
+    const [ statusLike, setStatusLike ] = useState(['']);
 
     useEffect(async () => {
 
@@ -29,22 +29,58 @@ function Feed(){
         setUserFeed(data);
         setfeedLength(data.length)
 
-    }, [])
+    }, [statusLike])
 
-    function LikeButon(){
 
-        return (
-            <img onClick={() => setLikeButtom(true)} id="like_button" src="https://icons-for-free.com/iconfiles/png/512/heart-131965017458786724.png"></img>
-        )
+    async function LikeButton(id, id_photo){
+
+        const del = document.querySelector(`#element-${id}`).querySelector('button');
+
+        if(del.textContent == 'Like'){
+            
+            const like = await Like_and_Remove_Photo(id_photo);
+
+            if(like.msg == "like"){
+
+                del.textContent = "Voce Curtiu"
+            }
+            
+        } else{
+            del.textContent = "Like"
+        }
+        
     }
 
-    function RemoveLike(){
+    async function RemoveLike(id, id_photo){
 
-        return (
-            <img onClick={() => setLikeButtom(false)} src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/OOjs_UI_icon_heart.svg/768px-OOjs_UI_icon_heart.svg.png"></img>
-        )
+        const del = document.querySelector(`#element-${id}`).querySelector('button');
+
+        if(del.textContent == "Voce curtiu"){
+
+            const remove = await Like_and_Remove_Photo(id_photo);
+            
+            console.log(remove);
+            
+            del.textContent = "Like"
+        }
     }
-    
+
+    async function Like_and_Remove_Photo(id_photo){
+
+        const token = localStorage.getItem("token");
+        const result = await axios({
+            baseURL: `${process.env.REACT_APP_API_LIKE}/${id_photo}`,
+            method: "GET",
+            headers: {
+                token: token
+            }
+        }).then(resp => {
+            return resp.data;
+        })
+
+        return result;
+    }
+
 
     function ContainerFeed() {
         return (
@@ -55,7 +91,7 @@ function Feed(){
                             <Link to={`/profile/${result.username}`}>
                                 <div className="container-profile-feed">
                                     <div className="feed-profile">
-                                        <img src={ result.profilePhotos.url || "https://www.drshaneholmes.com/wp-content/uploads/2020/03/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"}/>
+                                        <img src={result.profilePhotos.url || "https://www.drshaneholmes.com/wp-content/uploads/2020/03/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"}/>
                                         <h2>{result.username}</h2>
                                     </div>
 
@@ -69,14 +105,16 @@ function Feed(){
                                 </div>
                             </Link>
 
-                            <div className='container-like-elements'>
+                            <div className='container-like-elements' id={`element-${index}`}>
 
-                                {likeButtom ? <RemoveLike /> :  <LikeButon />}
+                                { result.like ? <button onClick={() => RemoveLike(index, result.id_photo)}>Voce curtiu</button> : <button onClick={() => LikeButton(index, result.id_photo)}>Like</button> }
+                               
                                 <p>Curtida por {result.photo_like.length} pessoas</p>
                             </div>  
                         </div>
                     )
                 })}                
+      
             </div>
         )
     }
@@ -84,8 +122,7 @@ function Feed(){
     return (
         <div>
             <Header />
-
-            { userFeed.length == feedLength ? <ContainerFeed /> : <h1>Loading</h1>}
+            {userFeed.length == feedLength ? <ContainerFeed /> : <h1>Loading</h1>}
             
         </div>
     )
