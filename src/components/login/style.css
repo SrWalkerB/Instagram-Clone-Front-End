@@ -20,7 +20,7 @@
 
     padding: 50px;
     margin-top: 40px;
-    width: 30vw;
+    width: 25vw;
 }
 
 .container-login h1{
@@ -58,7 +58,7 @@
 
     margin-top: 15px;
     padding: 10px;
-    width: 22vw;
+    width: 8vw;
 }
 
 
@@ -72,7 +72,7 @@
     justify-content: center;
     flex-direction: column;
 
-    width: 30vw;
+    width: 25vw;
     padding: 15px;
     margin-top: 20px;
 

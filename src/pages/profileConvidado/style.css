@@ -1,10 +1,15 @@
 
-
 .container-profile-follow{
 
     display: flex;
     align-items: center;
     
+}
+
+#profile{
+
+    background-color: blanchedalmond;
+    width: 12vw;
 }
 
 .container-profile-follow p {

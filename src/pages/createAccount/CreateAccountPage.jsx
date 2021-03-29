@@ -67,7 +67,7 @@ function CreateAccountPage(){
                 {resultCreateAccount}
 
             </div>
-                <div className="container-option-create-account">
+                <div className="container-option-login-account">
                     <p>Have an account?</p>
                     <Link to="/">
                         Log in

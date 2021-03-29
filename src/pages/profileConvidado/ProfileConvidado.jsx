@@ -48,7 +48,6 @@ function ProfileConvidado(){
 
         const [{ following_user, photo_user, followers, dataProfile }] = data;
 
-        console.log(dataProfile);
         setProfilePhoto(dataProfile);
         setUserFollowers(followers)
         setUserPhotos(photo_user)
@@ -126,7 +125,7 @@ function ProfileConvidado(){
 
             <div className="container-profile">
                 <div className="img-profile">
-                    <img 
+                    <img id="profile"
                         src={ userProfilePhoto.url || "https://w7.pngwing.com/pngs/613/636/png-transparent-computer-icons-user-profile-male-avatar-avatar-heroes-logo-black-thumbnail.png"}
                     />
                 </div>

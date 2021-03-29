@@ -85,5 +85,7 @@
 .container-like-elements button{
     cursor: pointer;
     padding: 9px;
+
+    margin-left: 6px;
 }
 
