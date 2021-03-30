@@ -48,7 +48,7 @@ npm start
 
 ## Como Usar
 
-#### Basicamente é navegação de qualquer rede social, na qual pode visulizar seu perfil, buscar novos usuários, seguir novos usuários, realizar upload de foto que pode ser feito tanto clicando na sua foto de perfil quanto no botão de upload, curti as fotos das pessoas que está seguindo e navegar pelo feed
+#### Basicamente é navegação de qualquer rede social, na qual pode visulizar seu perfil, buscar novos usuários, seguir novos usuários, realizar upload de foto que pode ser feito tanto clicando na sua foto de perfil quanto no botão de upload, curtir as fotos das pessoas que está seguindo e navegar pelo feed
 
 ## Observações
 
